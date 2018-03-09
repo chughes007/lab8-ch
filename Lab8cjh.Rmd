@@ -204,6 +204,21 @@ ggplot(oil_gfun, aes(x = r, y = obs)) +
 
 
 
+# Nearest neighbor using the L-Function
+
+
+```{r}
+
+r2 <- seq(0, 5, by = 0.1)
+
+oil_lfun <- envelope(all_ppp, fun = Lest, r = r2, nsim = 20, global = TRUE)
+
+ggplot(oil_lfun, aes(x = r2, y = obs)) +
+  geom_line(color = "black") +
+  geom_line(aes(x = r2, y = theo), color = "midnightblue")
+
+
+```
 
 
 
