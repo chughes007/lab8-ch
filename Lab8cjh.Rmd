@@ -143,6 +143,63 @@ all_ppp <- ppp(spill_ppp$x, spill_ppp$y, window = tx_owin)
 
 
 
+### Dens ploto
+
+```{r}
+
+
+plot(density(all_ppp, sigma = 17))
+
+```
+
+
+
+Quadrat test for spatial evenness
+
+Are oil spills evenly distributed throughout the state?
+
+
+
+
+```{r,}
+
+oil_qt <- quadrat.test(all_ppp, nx = 5, ny = 5)
+
+oil_qt # data not evenly distributed
+
+plot(all_ppp)
+plot(oil_qt, add = TRUE, cex = 0.4)
+
+
+```
+
+
+
+
+### G Function for nearest neighbor analysis
+
+
+
+
+```{r}
+
+r <- seq(0,1, by = 0.01)
+
+oil_gfun <- envelope(all_ppp, fun = Gest, r = r, nsim = 100)
+
+
+ggplot(oil_gfun, aes(x = r, y = obs)) +
+  geom_line(color = "black") +
+  geom_line(aes(x = r, y = theo), color = "firebrick")
+
+
+
+
+
+```
+
+
+
 
 
 
